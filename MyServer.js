@@ -9,7 +9,7 @@ function start(route, handle) {
     function onRequest(req, res) {
         console.log('Request receive.');
 
-        pathname = url.URL(req.url, baseUrl).pathname;
+        pathname = new url.URL(req.url, baseUrl).pathname;
         route(pathname, handle, res);
     }
 
