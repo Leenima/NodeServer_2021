@@ -1,3 +1,3 @@
 git add --all
-git commit -m "bug: [http://local:8000 => http://localhost:8000]"
+git commit -m "make MyServer.js"
  git push -u origin master
