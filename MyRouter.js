@@ -1,5 +1,5 @@
 function route(pathname) {
-    console.log('');
+    console.log('Routing request for ' + pathname);
 }
 
 exports.route = route;
