@@ -6,6 +6,7 @@ function start(res) {
     body += '<div><a href="\hello">hello 페이지</a></div>' //클릭하면 hello로 가는거
     body += '<div><a href="\wait">5초 대기 페이지</a></div>' //클릭하면 wait로 가는거
     body += '<div><a href="\randomWait">무작위 대기 페이지</a></div>' //클릭하면 randomWait로 가는거
+    body += '<div><a href="\firstHtml">html 읽는 페이지</a></div>' //클릭하면 firstHtml 가는거
     body += '</body>'
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(body);
