@@ -80,7 +80,7 @@ function people(res) {
     obj = JSON.parse(str);
     console.log(obj.name + ': ' + obj.house);
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write(body);
+    res.write(str);
     res.end();
 }
 
