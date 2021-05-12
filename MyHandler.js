@@ -1,5 +1,6 @@
 const fs = require('fs');
 const os = require('os');
+const queryString = require('queryString');
 
 function start(res) {
     let body = '<head><meta charset ="UTF-8"/></head>'
@@ -11,7 +12,8 @@ function start(res) {
     body += '<div><a href="/page">핸들러 없이 매핑하는 페이지</a></div>' //클릭하면 page 가는거
     body += '<div><a href="/serverInfo">server정보를 표시하는 페이지</a></div>' //클릭하면 firstHtml 가는거
     body += '<div><a href="/form">form을 입력하는 페이지</a></div>' //클릭하면 firstHtml 가는거
-    body += '</body>'
+    body += '<div><a href="/nickname">nickname을 입력하는 페이지</a></div>' //클릭하면 firstHtml 가는거
+    body += '</body>';
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(body);
     res.end();
@@ -62,6 +64,16 @@ function serverInfo(res) {
     res.end();
 }
 
+function nickname(res, postData) {
+    let body = '<head><meta charset ="UTF-8"/></head>';
+    body += '<div>안녕하세요, ' + queryString.parse(postData).myName + '님.</div>';
+    body += '<div>당신의 별명은 ' + queryString.parse(postData).myNick + '입니다.</div>';
+    body += '</body>';
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(body);
+    res.end();
+}
+
 exports.start = start;
 exports.hello = hello;
 exports.wait = wait;
@@ -69,3 +81,4 @@ exports.randomWait = randomWait;
 exports.firstHtml = firstHtml;
 exports.htmlFile = htmlFile;
 exports.serverInfo = serverInfo;
+exports.nickname = nickname;

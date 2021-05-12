@@ -8,9 +8,16 @@ const baseUrl = 'http://' + hostname + ':' + port;
 function start(route, handle) {
     function onRequest(req, res) {
         console.log('Request receive.');
-
         pathname = new url.URL(req.url, baseUrl).pathname;
-        route(pathname, handle, res);
+        let postData = '';
+        req.setEncoding('utf-8');
+        req.addListener('data', function(chunk) {
+            postData += chunk;
+            console.log("chunk: " + chunk);
+        });
+        req.addListener('end', function() {
+            route(pathname, handle, res);
+        });
     }
 
     server = http.createServer(onRequest);
