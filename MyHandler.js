@@ -10,9 +10,10 @@ function start(res) {
     body += '<div><a href="/randomWait">무작위 대기 페이지</a></div>' //클릭하면 randomWait로 가는거
     body += '<div><a href="/firstHtml">html 읽는 페이지</a></div>' //클릭하면 firstHtml 가는거
     body += '<div><a href="/page">핸들러 없이 매핑하는 페이지</a></div>' //클릭하면 page 가는거
-    body += '<div><a href="/serverInfo">server정보를 표시하는 페이지</a></div>' //클릭하면 firstHtml 가는거
-    body += '<div><a href="/form">form을 입력하는 페이지</a></div>' //클릭하면 firstHtml 가는거
-    body += '<div><a href="/nickname">nickname을 입력하는 페이지</a></div>' //클릭하면 firstHtml 가는거
+    body += '<div><a href="/serverInfo">server정보를 표시하는 페이지</a></div>' //클릭하면 serverInfo 가는거
+    body += '<div><a href="/form">form을 입력하는 페이지</a></div>' //클릭하면 form 가는거
+    body += '<div><a href="/nickname">nickname을 입력하는 페이지</a></div>' //클릭하면 nickname 가는거
+    body += '<div><a href="/people">JSON으로 입력받아 사람정보를 표시하는 페이지</a></div>' //클릭하면 people 가는거
     body += '</body>';
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(body);
@@ -65,10 +66,19 @@ function serverInfo(res) {
 }
 
 function nickname(res, postData) {
-    let body = '<head><meta charset ="UTF-8"/></head>';
+    let body = '<head><meta charset ="UTF-8"/></head><body>';
     body += '<div>안녕하세요, ' + queryString.parse(postData).myName + '님.</div>';
     body += '<div>당신의 별명은 ' + queryString.parse(postData).myNick + '입니다.</div>';
     body += '</body>';
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(body);
+    res.end();
+}
+
+function people(res) {
+    str = fs.readFileSync('people.json', 'utf-8');
+    obj = JSON.parse(str);
+    console.log(obj.name + ': ' + obj.house);
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(body);
     res.end();
@@ -82,3 +92,4 @@ exports.firstHtml = firstHtml;
 exports.htmlFile = htmlFile;
 exports.serverInfo = serverInfo;
 exports.nickname = nickname;
+exports.people = people;
