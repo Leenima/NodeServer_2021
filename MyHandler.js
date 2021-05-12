@@ -66,7 +66,7 @@ function serverInfo(res) {
 }
 
 function nickname(res, postData) {
-    let body = '<head><meta charset ="UTF-8"/></head><body>';
+    let body = '<head><meta charset ="UTF-8"/></head>';
     body += '<div>안녕하세요, ' + queryString.parse(postData).myName + '님.</div>';
     body += '<div>당신의 별명은 ' + queryString.parse(postData).myNick + '입니다.</div>';
     body += '</body>';
