@@ -10,7 +10,6 @@ function route(pathname, handle, res) {
     } else {
         pathFile = '.' + pathname + '.html'; //ex) ./page.html 
         if (fs.existsSync(pathFile)) { //파일이 있다면
-            handle[pathname](res);
             console.log(pathFile + 'is found.');
             myHandler.htmlFile(res, pathFile);
         } else { //없으면
