@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function start(res) {
     let body = '<head><meta charset ="UTF-8"/></head>'
     body += '<body><div>Hello, world! <br> I am in the cloud class.</div>';
@@ -35,7 +37,22 @@ function randomWait(res) {
         res.end();
     }, waitTime); // 5초뒤에 실행해라
 }
+
+
+function htmlFile(res, file) {
+    body = fs.readFileSync(file, 'utf-8');
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(body);
+    res.end();
+}
+
+function firstHtml(res) {
+    htmlFile(res, './firstHtml.html');
+
+}
+
 exports.start = start;
+exports.hello = hello;
 exports.wait = wait;
 exports.randomWait = randomWait;
-exports.hello = hello;
+exports.firstHtml = firstHtml;
